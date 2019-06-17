@@ -147,16 +147,22 @@ for inlist in transactions_clean:
 #print(sales)
 #print(thread_sold)
 
-
+#Now we want to know how much Thread Shed made in a day.
+#Iterate through sales and for each item, strip off the $, set it 
+# equal to a float, and add it to total_sales
 total_sales =0
 for price in sales:
   int_price=float(price.strip("$"))
   total_sales +=int_price
-  
 #print(total_sales)
 
-print(thread_sold)
-
+#Finally, we want to determine how many of each color thread we sold 
+# today.
+#print(thread_sold)
+#We see that thread_sold is a list of strings, some are single colors 
+# and some are multiple colors separated by the & character.
+#The end product we want here is a list that contains an item for each 
+# color thread sold, so no strings that have multiple colors in them.
 thread_sold_split=[]
 for item in thread_sold:
   if "&" not in item:
@@ -164,18 +170,20 @@ for item in thread_sold:
   else:
     thread_sold_split += item.split("&")
 
+#Define a function called color_count that takes one argument, color. 
+# The function should iterate through thread_sold_split and count the 
+# number of times the item is equal to argument, color. Then, it should 
+# return this count.
 def color_count(color):
   return thread_sold_split.count(color)
-  
-print(color_count('white'))
+#print(color_count('white'))
+
+#Now, using the list colors, the string method .format(), and the 
+# function color_count, iterate through thread_sold_split and print a 
+# sentence that says how many threads of each color were sold today.
 colors = ['red','yellow','green','white','black','blue','purple']
 for col in colors:
   print("We sold {} threads of {} colour.".format(color_count(col),col))
-  
-  
-  
-  
-  
   
   
   
